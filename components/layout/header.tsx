@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import { NAV_ITEMS, SITE_NAME } from "@/lib/site-config";
@@ -19,6 +20,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const listRef = useRef<HTMLUListElement>(null);
+  const isHome = usePathname() === "/";
 
   useEffect(() => {
     function onScroll() {
@@ -47,14 +49,16 @@ export function Header() {
     );
   }, [open]);
 
-  const inverted = scrolled || open;
+  // Only the home page opens over the hero image; inner pages carry the
+  // footer's deep surface from first paint, before any scroll.
+  const inverted = !isHome || scrolled || open;
 
   return (
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
         inverted
-          ? "border-b border-brand-line bg-brand-paper/95 backdrop-blur"
+          ? "border-b border-white/10 bg-surface-deep/95 backdrop-blur"
           : "bg-transparent",
       )}
     >
@@ -70,26 +74,15 @@ export function Header() {
           aria-label={SITE_NAME}
           className="relative block h-6 w-28 md:h-7 md:w-32"
         >
+          {/* The scrolled bar is now the same deep surface as the footer, so
+              the white mark reads in both states and no ink swap is needed. */}
           <Image
             src="/brand/midpoint-logo-white.png"
             alt=""
             fill
             priority
             sizes="160px"
-            className={cn(
-              "object-contain object-left transition-opacity duration-500",
-              inverted ? "opacity-0" : "opacity-100",
-            )}
-          />
-          <Image
-            src="/brand/midpoint-logo-ink.png"
-            alt=""
-            fill
-            sizes="160px"
-            className={cn(
-              "object-contain object-left transition-opacity duration-500",
-              inverted ? "opacity-100" : "opacity-0",
-            )}
+            className="object-contain object-left"
           />
         </Link>
 
@@ -98,10 +91,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className={cn(
-                "label-caps transition-colors hover:text-brand-blue",
-                inverted ? "text-brand-ink" : "text-white/90",
-              )}
+              className="label-caps text-white/90 transition-colors hover:text-brand-blue-light focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
               {item.label}
             </Link>
@@ -113,10 +103,7 @@ export function Header() {
             <button
               type="button"
               aria-label="Open menu"
-              className={cn(
-                "flex h-11 w-11 items-center justify-center lg:hidden",
-                inverted ? "text-brand-ink" : "text-white",
-              )}
+              className="flex h-11 w-11 items-center justify-center text-white lg:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
               <Menu className="size-5" strokeWidth={1.5} />
             </button>
@@ -127,7 +114,7 @@ export function Header() {
             // The shadcn default `data-[side=right]:w-3/4` rule outranks a
             // plain `w-full` override on specificity alone, so it needs the
             // important modifier to actually take over.
-            className="w-full! max-w-none! border-none bg-brand-navy p-0"
+            className="w-full! max-w-none! border-none bg-surface-deep p-0"
           >
             <SheetTitle className="sr-only">Navigation menu</SheetTitle>
             <SheetDescription className="sr-only">
@@ -141,7 +128,7 @@ export function Header() {
                   type="button"
                   aria-label="Close menu"
                   onClick={() => setOpen(false)}
-                  className="flex h-11 w-11 items-center justify-center"
+                  className="flex h-11 w-11 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >
                   <X className="size-5" strokeWidth={1.5} />
                 </button>
@@ -156,9 +143,9 @@ export function Header() {
                     <Link
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className="group flex items-baseline gap-4 border-b border-white/10 py-4 font-heading text-3xl transition-colors hover:text-brand-blue sm:text-4xl"
+                      className="group flex items-baseline gap-4 border-b border-white/10 py-4 font-heading text-3xl transition-colors hover:text-brand-blue-light focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-4xl"
                     >
-                      <span className="label-caps text-white/60 group-hover:text-brand-blue">
+                      <span className="label-caps text-white/60 group-hover:text-brand-blue-light">
                         {item.number}
                       </span>
                       {item.label.toUpperCase()}
