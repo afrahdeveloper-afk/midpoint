@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { projects, type Project } from "@/data/projects";
 import { RevealText } from "@/components/custom/reveal-text";
-import { RevealImage } from "@/components/custom/reveal-image";
 import { SectionLabel } from "@/components/custom/section-label";
 import { Arrow } from "@/components/custom/arrow";
 
@@ -26,7 +25,7 @@ function ProjectCaption({
   delay: number;
 }) {
   return (
-    <RevealText delay={delay} className="mt-6 flex flex-col gap-2">
+    <RevealText delay={delay} className="flex flex-col gap-2">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-baseline gap-4">
           <span className="label-caps text-brand-blue">{number}</span>
@@ -72,20 +71,12 @@ export function ProjectsShowcase() {
 
       {hasFeatured ? (
         <>
-          <div className="mt-14 overflow-hidden">
+          <div className="mt-14 border-t border-brand-line pt-8">
             <Link
               href={`/projects/${primaryProject.slug}`}
               data-cursor="View"
               className="group block"
             >
-              <RevealImage
-                src={primaryProject.coverImage}
-                alt={primaryProject.title}
-                label={`${primaryProject.title} — featured project image`}
-                ratio="16/9"
-                sizes="100vw"
-                className="transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-              />
               <ProjectCaption
                 number="01"
                 title={primaryProject.title}
@@ -97,7 +88,7 @@ export function ProjectsShowcase() {
           </div>
 
           {secondaryProjects.length > 0 && (
-            <div className="mt-16 grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-10">
+            <div className="mt-8 grid grid-cols-1 gap-8 border-t border-brand-line pt-8 sm:grid-cols-2 sm:gap-10">
               {secondaryProjects.map((project, index) => (
                 <Link
                   key={project.slug}
@@ -105,15 +96,6 @@ export function ProjectsShowcase() {
                   data-cursor="View"
                   className="group block"
                 >
-                  <RevealImage
-                    delay={index * 0.12}
-                    src={project.coverImage}
-                    alt={project.title}
-                    label={`${project.title} — project image`}
-                    ratio="4/5"
-                    sizes="(min-width: 640px) 50vw, 100vw"
-                    className="transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                  />
                   <ProjectCaption
                     number={String(index + 2).padStart(2, "0")}
                     title={project.title}

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { projects } from "@/data/projects";
-import { ProjectsArchive } from "@/components/projects/projects-archive";
 import { RevealText } from "@/components/custom/reveal-text";
 import { SectionLabel } from "@/components/custom/section-label";
 
@@ -22,10 +20,6 @@ export default function ProjectsPage() {
           Selected Projects
         </h1>
       </RevealText>
-
-      <div className="mt-14">
-        <ProjectsArchive projects={projects} />
-      </div>
     </div>
   );
 }

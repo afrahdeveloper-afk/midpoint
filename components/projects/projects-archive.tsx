@@ -5,16 +5,11 @@ import Link from "next/link";
 import { PROJECT_CATEGORIES, type Project } from "@/data/projects";
 import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
-import { RevealImage } from "@/components/custom/reveal-image";
 import { Arrow } from "@/components/custom/arrow";
 import { FilterTabs } from "@/components/custom/filter-tabs";
-import { cn } from "@/lib/utils";
 
 const FILTERS = ["All", ...PROJECT_CATEGORIES] as const;
 type Filter = (typeof FILTERS)[number];
-
-// Cycled per row for an asymmetric, non-grid rhythm rather than uniform cards.
-const RATIOS = ["16/10", "4/5", "3/2"];
 
 export function ProjectsArchive({ projects }: { projects: Project[] }) {
   const [filter, setFilter] = useState<Filter>("All");
@@ -81,16 +76,13 @@ export function ProjectsArchive({ projects }: { projects: Project[] }) {
         className="flex-wrap"
       />
 
-      <div ref={listRef} className="flex flex-col">
-        {filtered.map((project, index) => (
+      <div ref={listRef} className="mt-8 flex flex-col">
+        {filtered.map((project) => (
           <Link
             key={project.slug}
             href={`/projects/${project.slug}`}
             data-cursor="View"
-            className={cn(
-              "group flex flex-col gap-6 border-b border-brand-line py-14 sm:py-16",
-              index === 0 && "pt-14",
-            )}
+            className="group flex flex-col gap-4 border-b border-brand-line py-8 sm:py-10"
           >
             <div className="flex flex-wrap items-baseline justify-between gap-4">
               <div className="flex items-baseline gap-4">
@@ -108,15 +100,6 @@ export function ProjectsArchive({ projects }: { projects: Project[] }) {
               {project.category}
               {project.location ? ` — ${project.location}` : ""}
             </p>
-
-            <RevealImage
-              src={project.coverImage}
-              alt={project.title}
-              label={`${project.title} — project image`}
-              ratio={RATIOS[index % RATIOS.length]}
-              sizes="(min-width: 1024px) 84vw, 100vw"
-              wrapperClassName={cn(index % 2 === 1 && "lg:ml-[8%] lg:w-[92%]")}
-            />
           </Link>
         ))}
       </div>
