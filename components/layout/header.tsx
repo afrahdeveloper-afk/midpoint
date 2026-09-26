@@ -58,7 +58,7 @@ export function Header() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
         inverted
-          ? "border-b border-white/10 bg-surface-deep/95 backdrop-blur"
+          ? "border-b border-white/10 bg-brand-navy/95 backdrop-blur"
           : "bg-transparent",
       )}
     >
@@ -114,7 +114,7 @@ export function Header() {
             // The shadcn default `data-[side=right]:w-3/4` rule outranks a
             // plain `w-full` override on specificity alone, so it needs the
             // important modifier to actually take over.
-            className="w-full! max-w-none! border-none bg-surface-deep p-0"
+            className="w-full! max-w-none! border-none bg-brand-navy p-0"
           >
             <SheetTitle className="sr-only">Navigation menu</SheetTitle>
             <SheetDescription className="sr-only">
