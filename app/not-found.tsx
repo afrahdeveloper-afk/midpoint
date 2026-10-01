@@ -1,32 +1,32 @@
+import "./globals.css";
+import "./body-fonts.css";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHero } from "@/components/custom/page-hero";
-import { ContactCta } from "@/components/sections/contact-cta";
-import { Arrow } from "@/components/custom/arrow";
+import { fontVars } from "./fonts";
 
-export const metadata: Metadata = {
-  title: "Page Not Found",
-  description: "The page you're looking for doesn't exist or may have moved.",
-};
+export const metadata: Metadata = { title: "404 — Midpoint", robots: { index: false } };
 
-export default function NotFound() {
+/** 404 for URLs outside /ar and /en (rendered without the locale layout, so it brings its own <html>). */
+export default function GlobalNotFound() {
   return (
-    <>
-      <PageHero
-        eyebrow="Error 404"
-        title="Page Not Found"
-        intro="The page you're looking for doesn't exist or may have moved."
-      />
-      <section className="shell pb-24 md:pb-32">
-        <Link
-          href="/"
-          className="group inline-flex items-center gap-2 label-caps text-brand-blue"
-        >
-          Back To Homepage
-          <Arrow />
-        </Link>
-      </section>
-      <ContactCta />
-    </>
+    <html lang="ar" dir="rtl" className={fontVars}>
+      <body className="loaded">
+        <main id="main">
+          <section className="sec contact" style={{ minHeight: "100svh", display: "grid", alignContent: "center" }}>
+            <div className="sec-head">
+              <div>
+                <p className="kicker">404</p>
+                <h2>الصفحة غير موجودة</h2>
+                <h2 lang="en" style={{ marginTop: 12 }}>Page not found</h2>
+              </div>
+            </div>
+            <div className="btns">
+              <Link className="btn solid" href="/ar">الرئيسية</Link>
+              <Link className="btn ghost" href="/en" lang="en">Home</Link>
+            </div>
+          </section>
+        </main>
+      </body>
+    </html>
   );
 }

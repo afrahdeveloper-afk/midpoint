@@ -1,167 +1,133 @@
-import { bySlug } from "@/lib/slug-lookup";
+// Ported verbatim from the original midpoint.html.
+import type { MatKey } from "./images";
+import type { Locale } from "./i18n";
+
+/** Filter category on the home page brand list. */
+export type BrandCat = "surf" | "tile" | "bath" | "mosaic";
 
 export type Brand = {
+  /** URL segment: /[locale]/brands/[slug] */
   slug: string;
-  name: string;
-  category: string;
-  /** Hero / editorial photography, supplied by Midpoint. Left unset when no
-   * licensed imagery is available — never populated with scraped photos. */
-  image?: string;
-  /** Brand logo mark. Not yet available for any brand. */
-  logo?: string;
-  /** Verified only via the brand's official site/documentation. */
-  country?: string;
-  description?: string;
-  /** Controlled vocabulary: Residential, Hospitality, Commercial, Bathrooms,
-   * Kitchens, Walls, Floors, Outdoor, Furniture — only where verified. */
-  applications?: string[];
-  productCategories?: string[];
-  collections?: string[];
-  gallery?: string[];
-};
+  /** Display name (also the key into LOGOS). */
+  n: string;
+  cat: BrandCat;
+  /** Official website. */
+  url: string;
+  /** Swatch used in the brand showcase. */
+  mat: MatKey;
+  /** What we supply (tags). */
+  tg: Record<Locale, string[]>;
+} & Record<Locale, [country: string, speciality: string]>;
 
-export const brands: Brand[] = [
+/** The nine partner brands, in display order. */
+export const BRANDS: Brand[] = [
   {
-    slug: "fuji",
-    name: "Fuji Elevators & Escalators",
-    category: "Elevators & Escalators",
-    // Identity unconfirmed: several unrelated companies (Japan's Fujitec and
-    // multiple Chinese manufacturers) operate under the "Fuji" elevator
-    // name. Which one Midpoint represents has not been verified, so no
-    // country/history/collections are included — see project notes.
-  },
-  {
-    slug: "veion",
-    name: "VEION Elevators",
-    category: "Elevators & Escalators",
-    // The only distinct "VEION" match found (Riyadh, Saudi Arabia) describes
-    // itself as an elevator operation/maintenance service, not a product
-    // manufacturer — a mismatch with how this brand is used here, so it has
-    // not been treated as confirmed.
+    slug: "roca",
+    n: "Roca",
+    cat: "bath",
+    url: "https://www.export.roca.com/",
+    mat: "roca_inwall",
+    en: ["Spain", "Sanitaryware, basins, taps and bathroom furniture"],
+    ar: ["إسبانيا", "أدوات صحية، مغاسل، خلاطات وأثاث حمّامات"],
+    tg: {
+      en: ["Toilets", "Smart toilets", "Basins", "Faucets", "Furniture", "Showers and baths"],
+      ar: ["مراحيض", "مراحيض ذكية", "مغاسل", "خلاطات", "أثاث", "شاورات وأحواض"],
+    },
   },
   {
     slug: "toto",
-    name: "TOTO",
-    category: "Sanitary Ware",
-    image: "/brands/toto-smart-toilet.jpg",
-    country: "Japan",
-    description:
-      "TOTO is a Japanese manufacturer of sanitary ware and bathroom technology, founded in 1917 and headquartered in Kitakyushu, Japan.",
-    applications: ["Bathrooms", "Residential", "Commercial"],
-    productCategories: ["Washlet Toilets", "Faucets", "Showers", "Lavatories"],
-    collections: ["Washlet", "Washlet+", "Neorest"],
-  },
-  {
-    slug: "roca",
-    name: "Roca",
-    category: "Sanitary Ware",
-    image: "/brands/roca-bathroom-suite.jpg",
-    country: "Spain",
-    description:
-      "Roca is a Spanish manufacturer of bathroom spaces, founded in 1917 in Gavà, Barcelona.",
-    applications: ["Bathrooms", "Residential", "Hospitality", "Furniture"],
-    productCategories: [
-      "Sanitary Ware",
-      "Faucets",
-      "Bathroom Furniture",
-      "Smart Toilets",
-    ],
-    collections: ["Meridian", "Kay", "Ohtake", "Targa", "Avant"],
-  },
-  {
-    slug: "infinity",
-    name: "Infinity",
-    category: "Architectural Surfaces",
-    image: "/brands/infinity-marble-kitchen-bar.webp",
-    country: "Italy",
-    description:
-      "Infinity is a large-format porcelain slab brand from Gruppo Concorde, based in Pavullo, in the province of Modena, Italy.",
-    applications: [
-      "Walls",
-      "Floors",
-      "Kitchens",
-      "Bathrooms",
-      "Furniture",
-      "Commercial",
-      "Outdoor",
-    ],
-    productCategories: ["Large-Format Porcelain Slabs"],
-    collections: ["Ginza", "Holos", "Arkèon"],
-  },
-  {
-    slug: "ab",
-    name: "AB",
-    category: "Porcelain Tiles",
-    image: "/brands/ab-marble-slab-lounge.jpg",
-    country: "Spain",
-    description:
-      "AB (Azulejos Benadresa, S.L.) is a Spanish manufacturer of porcelain and ceramic tiles, with products present in more than a hundred countries.",
-    applications: ["Bathrooms", "Kitchens", "Commercial", "Hospitality", "Outdoor"],
-    productCategories: ["Porcelain Tiles", "Large-Format Slabs"],
-    collections: ["Tessino", "Ravena", "Icaro", "Toga", "Aura"],
+    n: "TOTO",
+    cat: "bath",
+    url: "https://asia.toto.com/general/",
+    mat: "toto_lav",
+    en: ["Japan", "Smart toilets, WASHLET and sanitaryware"],
+    ar: ["اليابان", "مراحيض ذكية، WASHLET وأدوات صحية"],
+    tg: {
+      en: ["WASHLET", "Smart toilets", "Toilets", "Bathtubs", "Lavatories", "Faucets", "Accessories"],
+      ar: ["WASHLET", "مراحيض ذكية", "مراحيض", "أحواض", "مغاسل", "خلاطات", "إكسسوارات"],
+    },
   },
   {
     slug: "laminam",
-    name: "Laminam",
-    category: "Architectural Surfaces",
-    image: "/brands/laminam-terrazzo-kitchen.jpg",
-    gallery: [
-      "/brands/laminam-rooftop-pool-cladding.jpg",
-      "/brands/laminam-lounge-wall-cladding.jpg",
-    ],
-    country: "Italy",
-    description:
-      "Laminam is an Italian manufacturer of large-format, ultra-thin ceramic surfaces, headquartered in Fiorano Modenese, Italy.",
-    applications: ["Kitchens", "Walls", "Floors", "Outdoor", "Furniture", "Commercial"],
-    productCategories: ["Large-Format Ceramic Slabs"],
-    collections: [
-      "I Naturali",
-      "Blend",
-      "Oxide",
-      "Calce",
-      "Filo",
-      "Slate",
-    ],
+    n: "Laminam",
+    cat: "surf",
+    url: "https://www.laminam.com/en/",
+    mat: "laminam_kitchen_gold_vein",
+    en: ["Italy", "Large-format ceramic slabs"],
+    ar: ["إيطاليا", "ألواح سيراميك بمقاسات كبيرة"],
+    tg: {
+      en: ["Wall cladding", "Flooring", "Kitchen worktops", "Furnishing", "Façades"],
+      ar: ["تكسية الجدران", "الأرضيات", "أسطح المطابخ", "الأثاث", "الواجهات"],
+    },
+  },
+  {
+    slug: "infinity-surfaces",
+    n: "Infinity Surfaces",
+    cat: "surf",
+    url: "https://www.infinitysurfaces.it/en/",
+    mat: "inf_travertine_bath",
+    en: ["Italy", "Large 160×320 cm porcelain slabs"],
+    ar: ["إيطاليا", "ألواح بورسلين كبيرة 160×320 سم"],
+    tg: {
+      en: ["160×320 slabs", "Kitchen tops", "Vanities", "Floors and walls", "Façades"],
+      ar: ["ألواح 160×320", "أسطح المطابخ", "أسطح المغاسل", "الأرضيات والجدران", "الواجهات"],
+    },
+  },
+  {
+    slug: "argenta",
+    n: "Argenta Cerámica",
+    cat: "tile",
+    url: "https://www.argentaceramica.com/en/",
+    mat: "arg_texture",
+    en: ["Spain", "Porcelain and ceramic wall and floor tiles"],
+    ar: ["إسبانيا", "بلاط بورسلين وسيراميك للجدران والأرضيات"],
+    tg: { en: ["Stone", "Marble", "Wood", "Concrete", "Rustic", "Texture", "Façades"], ar: ["حجر", "رخام", "خشب", "إسمنت", "ريفي", "ملمس", "واجهات"] },
+  },
+  {
+    slug: "benadresa",
+    n: "Azulejos Benadresa",
+    cat: "tile",
+    url: "https://www.azulejosbenadresa.com/en/",
+    mat: "ab_marble",
+    en: ["Spain", "Ceramic wall and floor tiles"],
+    ar: ["إسبانيا", "بلاط سيراميك للجدران والأرضيات"],
+    tg: {
+      en: ["Porcelain body", "White body", "XLAB", "Proline", "AB Essential", "Construcollections"],
+      ar: ["بورسلان", "جسم أبيض", "XLAB", "Proline", "AB Essential", "Construcollections"],
+    },
   },
   {
     slug: "alaplana",
-    name: "Alaplana",
-    category: "Ceramic & Porcelain",
-    image: "/brands/alaplana-lapado-structech.jpg",
-    country: "Spain",
-    description:
-      "Alaplana is a Spanish manufacturer of porcelain stoneware flooring and ceramic wall tiles, based in the Castellón region.",
-    applications: ["Walls", "Floors"],
-    productCategories: ["Porcelain Stoneware Flooring", "Ceramic Wall Tiles"],
+    n: "Nueva Alaplana",
+    cat: "tile",
+    url: "https://nuevaalaplana.es/",
+    mat: "ala_santa_monica",
+    en: ["Spain", "Porcelain tiles in stone, wood and cement looks"],
+    ar: ["إسبانيا", "بلاط بورسلين بمظهر الحجر والخشب والإسمنت"],
+    tg: { en: ["Glazed porcelain", "Wall tiles", "Coloured body", "Large format"], ar: ["بورسلين مزجج", "بلاط جدران", "عجينة ملوّنة", "مقاسات كبيرة"] },
+  },
+  {
+    slug: "mayolica",
+    n: "Mayolica",
+    cat: "tile",
+    url: "https://www.mayolica.es/",
+    mat: "may_rustic",
+    en: ["Spain", "Small-format decorated wall and floor tiles"],
+    ar: ["إسبانيا", "بلاط جدران وأرضيات صغير المقاس ومزخرف"],
+    tg: { en: ["Small format tiles", "Subway", "Rustic", "Hydraulic"], ar: ["بلاط صغير المقاس", "سبواي", "ريفي", "هيدروليك"] },
   },
   {
     slug: "vidrepur",
-    name: "Vidrepur",
-    category: "Glass Mosaic",
-    image: "/brands/vidrepur-glitter-mosaic-bathroom.webp",
-    country: "Spain",
-    description:
-      "Vidrepur is a Spanish manufacturer of glass mosaic, based in Castellón.",
-    applications: [
-      "Bathrooms",
-      "Walls",
-      "Floors",
-      "Outdoor",
-      "Hospitality",
-      "Commercial",
-    ],
-    productCategories: ["Glass Mosaic"],
-    collections: [
-      "Oasis",
-      "Estelar",
-      "Glitter",
-      "Level",
-      "Breeze",
-      "Eden",
-      "Tender",
-      "Soul",
-    ],
+    n: "Vidrepur",
+    cat: "mosaic",
+    url: "https://vidrepur.com/en/",
+    mat: "vid_diamond",
+    en: ["Spain", "Recycled glass mosaic"],
+    ar: ["إسبانيا", "موزاييك من الزجاج المعاد تدويره"],
+    tg: { en: ["Pool mosaic", "Decor", "Luminescent", "Recycled glass"], ar: ["موزاييك المسابح", "ديكور", "مضيء", "زجاج معاد تدويره"] },
   },
 ];
 
-export const brandsBySlug = bySlug(brands);
+export const SLUGS = BRANDS.map((b) => b.slug);
+
+export const brandIndex = (slug: string) => BRANDS.findIndex((b) => b.slug === slug);
