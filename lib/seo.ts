@@ -29,13 +29,13 @@ export function pageMetadata({ locale, path, title, description }: { locale: Loc
       description,
       locale: OG_LOCALE[locale],
       alternateLocale: LOCALES.filter((l) => l !== locale).map((l) => OG_LOCALE[l]),
-      images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Midpoint — Inside The Heart" }],
+      images: [{ url: "/og.jpg?v=2", width: 1200, height: 630, alt: "Midpoint — Inside The Heart" }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["/og.jpg"],
+      images: ["/og.jpg?v=2"],
     },
     formatDetection: { telephone: false, email: false, address: false },
   };

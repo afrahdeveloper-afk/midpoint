@@ -166,7 +166,7 @@ async function main() {
   const x0 = Math.round((1200 - total) / 2);
   const overlay = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
     <defs>
-      <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0C1626" stop-opacity=".72"/><stop offset="1" stop-color="#0C1626" stop-opacity=".9"/></linearGradient>
+      <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#445D81" stop-opacity=".8"/><stop offset="1" stop-color="#364B6A" stop-opacity=".92"/></linearGradient>
       <radialGradient id="r" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#B8976A" stop-opacity=".16"/><stop offset="1" stop-color="#B8976A" stop-opacity="0"/></radialGradient>
     </defs>
     <rect width="1200" height="630" fill="url(#g)"/><rect width="1200" height="630" fill="url(#r)"/>
