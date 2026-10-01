@@ -2,9 +2,14 @@ import type { Locale } from "./i18n";
 
 /**
  * Business details used across the site, the JSON-LD and the metadata.
- * Set NEXT_PUBLIC_SITE_URL in production (e.g. https://www.midpointco.com).
+ * Set NEXT_PUBLIC_SITE_URL in production (e.g. https://www.midpointco.com). Without it, a Vercel
+ * build uses the project's production domain, so og:image and canonical links point at a host
+ * that actually serves this site (link previews in WhatsApp etc. need a reachable og:image).
  */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.midpointco.com").replace(/\/$/, "");
+const VERCEL_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? (VERCEL_URL ? `https://${VERCEL_URL}` : "https://www.midpointco.com")
+).replace(/\/$/, "");
 
 export const SITE = {
   name: "Midpoint",
