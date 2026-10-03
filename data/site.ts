@@ -20,14 +20,14 @@ export const SITE = {
   phone: "9647870888021",
   phoneDisplay: "+964 787 088 8021",
   whatsapp: "https://wa.me/9647870888021",
-  maps: "https://www.google.com/maps/search/?api=1&query=Baghdad+Tower+Al+Mansour+Baghdad",
+  maps: "https://www.google.com/maps/search/?api=1&query=Godiya+Plaza+Al+Mansour+Baghdad",
   /** Opening hours, Baghdad time (UTC+3), every day. */
   opens: 9,
   closes: 20,
   utcOffset: 3,
   foundingYear: "2019",
   address: {
-    street: "Baghdad Tower, Godiya Plaza",
+    street: "Godiya Plaza",
     locality: "Al-Mansour",
     city: "Baghdad",
     country: "IQ",

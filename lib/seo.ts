@@ -53,8 +53,8 @@ export function clip(s: string, max = 160) {
 }
 
 const ADDRESS: Record<Locale, { streetAddress: string; addressLocality: string; addressRegion: string }> = {
-  en: { streetAddress: "Baghdad Tower, Godiya Plaza", addressLocality: "Al-Mansour", addressRegion: "Baghdad" },
-  ar: { streetAddress: "برج بغداد، مجمع جوديا بلازا", addressLocality: "المنصور", addressRegion: "بغداد" },
+  en: { streetAddress: "Godiya Plaza", addressLocality: "Al-Mansour", addressRegion: "Baghdad" },
+  ar: { streetAddress: "كوديا بلازا", addressLocality: "المنصور", addressRegion: "بغداد" },
 };
 
 /** Organization + LocalBusiness (the Baghdad showroom). */
