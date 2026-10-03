@@ -43,8 +43,8 @@ export const BRANDS: Brand[] = [
     en: ["Japan", "Smart toilets, WASHLET and sanitaryware"],
     ar: ["اليابان", "مراحيض ذكية، WASHLET وأدوات صحية"],
     tg: {
-      en: ["WASHLET", "Smart toilets", "Toilets", "Bathtubs", "Lavatories", "Faucets", "Accessories"],
-      ar: ["WASHLET", "مراحيض ذكية", "مراحيض", "أحواض", "مغاسل", "خلاطات", "إكسسوارات"],
+      en: ["WASHLET", "Smart toilets", "Toilets", "Bathtubs", "Lavatories", "Faucets"],
+      ar: ["WASHLET", "مراحيض ذكية", "مراحيض", "أحواض", "مغاسل", "خلاطات"],
     },
   },
   {

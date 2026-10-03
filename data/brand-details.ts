@@ -191,7 +191,6 @@ export const BDATA: Record<string, BrandDetail> = {
         "الخلاطات والشاورات",
         "خلاطات مغاسل ورؤوس شاور مطرية مصمّمة لترشيد المياه.",
       ],
-      ["Accessories", "Holders, shelves and fittings to complete the bathroom.", "الإكسسوارات", "حوامل ورفوف وقطع تكمّل الحمّام."],
     ],
     tl: [
       [
