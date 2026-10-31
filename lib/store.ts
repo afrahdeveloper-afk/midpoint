@@ -12,8 +12,9 @@
  */
 import { useSyncExternalStore } from "react";
 
-export type SectionKey = "home" | "about" | "brands" | "products" | "contact";
-export const SECTIONS: SectionKey[] = ["home", "about", "brands", "products", "contact"];
+export type SectionKey = "home" | "about" | "brands" | "projects" | "products" | "contact";
+/** Home-page sections in page order (scroll spy + header indicator numbering). */
+export const SECTIONS: SectionKey[] = ["home", "about", "brands", "projects", "products", "contact"];
 
 export const persist = {
   /** The preloader has finished once in this page load. */
@@ -31,6 +32,7 @@ export const persist = {
   hero: { cur: 0, userPaused: null as boolean | null, prog: 0 },
   brands: { cat: "all", sel: 0, open: -1 },
   pxSpace: "all",
+  projects: { filter: "all", paused: false },
   form: { name: "", phone: "", type: 0, brand: 0, msg: "" },
   /** `.rv` elements already revealed ("<section>:<index>"), plus ids marked `seen`. */
   seenRv: new Set<string>(),
@@ -38,7 +40,7 @@ export const persist = {
 };
 
 /** Merge `patch` into one of the `persist` groups (keeps writes out of component render scope). */
-export function remember<K extends "hdr" | "menu" | "hero" | "brands" | "form">(group: K, patch: Partial<(typeof persist)[K]>) {
+export function remember<K extends "hdr" | "menu" | "hero" | "brands" | "projects" | "form">(group: K, patch: Partial<(typeof persist)[K]>) {
   Object.assign(persist[group], patch);
 }
 export function rememberSpace(s: string) {

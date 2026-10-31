@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { HeroSlider } from "@/components/home/HeroSlider";
 import { About } from "@/components/home/About";
 import { BrandsSection } from "@/components/home/BrandsSection";
+import { ProjectsSection } from "@/components/home/ProjectsSection";
 import { ProductsSection } from "@/components/home/ProductsBento";
 import { Contact } from "@/components/home/Contact";
 import { HomeEffects } from "@/components/home/HomeEffects";
@@ -28,6 +29,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         <HeroSlider />
         <Suspense><About /></Suspense>
         <Suspense><BrandsSection /></Suspense>
+        <Suspense><ProjectsSection /></Suspense>
         <Suspense><ProductsSection /></Suspense>
         <Suspense><Contact /></Suspense>
       </main>

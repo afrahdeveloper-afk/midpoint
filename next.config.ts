@@ -4,7 +4,7 @@ import type { NextConfig } from "next";
 const root = path.resolve(__dirname);
 
 const nextConfig: NextConfig = {
-   allowedDevOrigins: ['192.168.68.102'],
+      allowedDevOrigins: ['192.168.68.105'],
   poweredByHeader: false,
   // Pin the workspace root: stray lockfiles in parent folders would otherwise confuse Turbopack.
   turbopack: { root },

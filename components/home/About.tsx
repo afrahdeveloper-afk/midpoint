@@ -8,7 +8,8 @@ import { pad2, prefersReduced, useLocale } from "@/lib/hooks";
 import { persist } from "@/lib/store";
 import { addInstant, useReveal } from "@/lib/reveal";
 
-function countUp(el: HTMLElement) {
+/** Count a `.num[data-to]` up from `data-from` (or 0); also used by the projects stats. */
+export function countUp(el: HTMLElement) {
   const to = +(el.dataset.to ?? 0), from = +(el.dataset.from ?? 0);
   if (prefersReduced()) {
     el.textContent = String(to);

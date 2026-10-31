@@ -24,6 +24,7 @@ export function Footer({ locale }: { locale: Locale }) {
             <li><SecLink sec="home">{L.nav_home}</SecLink></li>
             <li><SecLink sec="about">{L.nav_about}</SecLink></li>
             <li><SecLink sec="brands">{L.nav_brands}</SecLink></li>
+            <li><SecLink sec="projects">{L.nav_projects}</SecLink></li>
             <li><SecLink sec="products">{L.nav_products}</SecLink></li>
             <li><SecLink sec="contact">{L.nav_contact}</SecLink></li>
           </ul>

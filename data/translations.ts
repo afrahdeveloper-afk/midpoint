@@ -158,6 +158,40 @@ export interface Dict {
   s1: string;
   s2: string;
   s3: string;
+  pjt_auto: string;
+  pjt_res: string;
+  pjt_com: string;
+  pjt_ent: string;
+  pj_other: string;
+  pj_photos: string;
+  nav_projects: string;
+  pj_h: string;
+  pj_pv: string;
+  pj_all: string;
+  pj_san: string;
+  pj_por: string;
+  pj_n: string;
+  pj_n1: string;
+  pj_years: string;
+  pj_total: string;
+  pj_scope: string;
+  pj_brands: string;
+  pj_s_por: string;
+  pj_s_san: string;
+  pj_s_elev: string;
+  pj_wa: string;
+  pj_wa_msg: string;
+  pj_open: string;
+  pjf_year: string;
+  pjf_type: string;
+  pjf_brands: string;
+  pjf_photos: string;
+  pjd_por: string;
+  pjd_san: string;
+  pjd_elev: string;
+  pjp_prev: string;
+  pjp_next: string;
+  pj_hint: string;
 }
 
 const en: Dict = {
@@ -332,6 +366,40 @@ const en: Dict = {
   s1: "Founded",
   s2: "Brands",
   s3: "Countries",
+  pjt_auto: "Car showrooms",
+  pjt_res: "Residential",
+  pjt_com: "Hotels & retail",
+  pjt_ent: "Leisure",
+  pj_other: "More projects",
+  pj_photos: "photos",
+  nav_projects: "Projects",
+  pj_h: "Spaces we have equipped",
+  pj_pv: "Showrooms, hotels, malls and homes across Iraq fitted with our brands.",
+  pj_all: "All",
+  pj_san: "Sanitaryware",
+  pj_por: "Porcelain",
+  pj_n: "projects",
+  pj_n1: "project",
+  pj_years: "Years",
+  pj_total: "Projects",
+  pj_scope: "Scope of work",
+  pj_brands: "Brands supplied",
+  pj_s_por: "Porcelain tiles",
+  pj_s_san: "Sanitaryware",
+  pj_s_elev: "Elevators",
+  pj_wa: "Start a similar project",
+  pj_wa_msg: "Hello Midpoint, I'd like a project similar to",
+  pj_open: "View details",
+  pjf_year: "Year",
+  pjf_type: "Type",
+  pjf_brands: "Sanitaryware",
+  pjf_photos: "Photos",
+  pjd_por: "Floor and wall tiles",
+  pjd_san: "Toilets, basins and fittings",
+  pjd_elev: "Lift supply",
+  pjp_prev: "Previous project",
+  pjp_next: "Next project",
+  pj_hint: "Hover a project to pause, drag to browse, click for details",
 };
 
 const ar: Dict = {
@@ -506,6 +574,40 @@ const ar: Dict = {
   s1: "التأسيس",
   s2: "علامة",
   s3: "دول",
+  pjt_auto: "معارض سيارات",
+  pjt_res: "سكني",
+  pjt_com: "فنادق ومتاجر",
+  pjt_ent: "ترفيه",
+  pj_other: "مشاريع أخرى",
+  pj_photos: "صور",
+  nav_projects: "مشاريعنا",
+  pj_h: "مساحات جهّزناها",
+  pj_pv: "معارض وفنادق ومولات ومنازل في العراق مجهّزة بعلاماتنا.",
+  pj_all: "الكل",
+  pj_san: "صحيات",
+  pj_por: "بورسلين",
+  pj_n: "مشاريع",
+  pj_n1: "مشروع",
+  pj_years: "السنوات",
+  pj_total: "مشروعاً",
+  pj_scope: "نطاق العمل",
+  pj_brands: "العلامات المورّدة",
+  pj_s_por: "بورسلين",
+  pj_s_san: "صحيات",
+  pj_s_elev: "مصاعد",
+  pj_wa: "ابدأ مشروعاً مشابهاً",
+  pj_wa_msg: "مرحباً ميدبوينت، أرغب بمشروع مشابه لـ",
+  pj_open: "عرض التفاصيل",
+  pjf_year: "السنة",
+  pjf_type: "النوع",
+  pjf_brands: "الصحيات",
+  pjf_photos: "الصور",
+  pjd_por: "بلاط أرضيات وجدران",
+  pjd_san: "مراحيض ومغاسل وتجهيزات",
+  pjd_elev: "توريد مصاعد",
+  pjp_prev: "المشروع السابق",
+  pjp_next: "المشروع التالي",
+  pj_hint: "مرّر على أي مشروع لإيقافه، اسحب للتصفح، واضغط لعرض التفاصيل",
 };
 
 /** UI copy, keyed by locale (was `T` in the original script). */

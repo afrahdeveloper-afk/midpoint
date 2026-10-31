@@ -15,7 +15,7 @@ import { pad2, prefersReduced, useIsHome, useIsoLayoutEffect, useLocale } from "
 import { useSwitchLang } from "@/lib/nav";
 import { bodyClass, emit, getShared, on, persist, remember, SECTIONS, setIntent, setShared, useShared, watchShared, type SectionKey } from "@/lib/store";
 
-const PV_MAT: Record<SectionKey, MatKey> = { home: "inf_kitchen", about: "roca_tenet_room", brands: "inf_agate", products: "toto_vessels", contact: "roca_inwall" };
+const PV_MAT: Record<SectionKey, MatKey> = { home: "inf_kitchen", about: "roca_tenet_room", brands: "inf_agate", projects: "inf_rosso", products: "toto_vessels", contact: "roca_inwall" };
 
 export function OverlayMenu() {
   const locale = useLocale();
@@ -198,6 +198,13 @@ export function OverlayMenu() {
         </ul>
       </>
     ),
+    projects: (
+      <>
+        <h3>{L.pj_h}</h3>
+        <p>{L.pj_pv}</p>
+        <SecLink sec="projects" className="pv-cta" data-close="" tabIndex={-1}>{L.nav_projects}<IcArrowBare /></SecLink>
+      </>
+    ),
     contact: (
       <>
         <h3>{L.pv_contact_t}</h3>
@@ -265,7 +272,8 @@ export function OverlayMenu() {
                 </div>
               </div>
             </li>
-            <li><div className="m-row">{mLink("contact", 4)}</div></li>
+            <li><div className="m-row">{mLink("projects", 4)}</div></li>
+            <li><div className="m-row">{mLink("contact", 5)}</div></li>
           </ul>
         </nav>
         <div className="m-preview" id="mPreview" onMouseEnter={() => setHot(pvKey)} onMouseLeave={() => setHotKey(null)}>
