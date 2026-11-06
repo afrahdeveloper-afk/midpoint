@@ -47,7 +47,18 @@ export function useIsHome() {
   return /^\/(ar|en)\/?$/.test(pathname ?? "");
 }
 
-export const pad2 = (n: number) => String(n).padStart(2, "0");
+/** Sections with their own page (/[locale]/<section>) rather than an anchor on the home page. */
+export const PAGE_SECTIONS = ["brands", "projects", "products"] as const;
+export type PageSection = (typeof PAGE_SECTIONS)[number];
+export const isPageSection = (s: string): s is PageSection => (PAGE_SECTIONS as readonly string[]).includes(s);
+
+/** The section page being shown (/ar/products → "products"), or null elsewhere. */
+export function usePageSection(): PageSection | null {
+  const m = usePathname()?.match(/^\/(?:ar|en)\/([^/]+)\/?$/);
+  return m && isPageSection(m[1]) ? m[1] : null;
+}
+
+export const pad2 =(n: number) => String(n).padStart(2, "0");
 
 const statusStore = {
   subscribe(cb: () => void) {

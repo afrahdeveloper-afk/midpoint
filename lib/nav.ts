@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { LOCALE_COOKIE, type Locale } from "@/data/i18n";
 import { emit, persist, setIntent, type Intent, type SectionKey } from "./store";
-import { prefersReduced, useLocale } from "./hooks";
+import { isPageSection, prefersReduced, useLocale } from "./hooks";
 
 const brandPathRe = /^\/(ar|en)\/brands\/([^/?#]+)/;
 export const currentBrandSlug = (pathname: string | null) => pathname?.match(brandPathRe)?.[2] ?? null;
@@ -37,14 +37,14 @@ export function useGoBrand() {
   );
 }
 
-/** Go to a home-page section from anywhere, optionally carrying an intent (prefill, open drawer…). */
+/** Go to a section (home-page anchor or its own page) from anywhere, optionally carrying an intent (prefill, open drawer…). */
 export function useGoHome() {
   const router = useRouter();
   const locale = useLocale();
   return useCallback(
     (sec: SectionKey, intent?: Intent) => {
       if (intent) setIntent(intent);
-      router.push(`/${locale}#${sec}`);
+      router.push(isPageSection(sec) ? `/${locale}/${sec}` : `/${locale}#${sec}`);
     },
     [locale, router],
   );

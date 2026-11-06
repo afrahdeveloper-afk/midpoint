@@ -11,7 +11,7 @@ import { T } from "@/data/translations";
 import { SITE } from "@/data/site";
 import type { MatKey } from "@/data/images";
 import type { Locale } from "@/data/i18n";
-import { pad2, prefersReduced, useIsHome, useIsoLayoutEffect, useLocale } from "@/lib/hooks";
+import { pad2, prefersReduced, useIsoLayoutEffect, useLocale, usePageSection } from "@/lib/hooks";
 import { useSwitchLang } from "@/lib/nav";
 import { bodyClass, emit, getShared, on, persist, remember, SECTIONS, setIntent, setShared, useShared, watchShared, type SectionKey } from "@/lib/store";
 
@@ -20,7 +20,7 @@ const PV_MAT: Record<SectionKey, MatKey> = { home: "inf_kitchen", about: "roca_t
 export function OverlayMenu() {
   const locale = useLocale();
   const L = T[locale];
-  const home = useIsHome();
+  const onProducts = usePageSection() === "products";
   const switchLang = useSwitchLang();
   const open = useShared("menuOpen");
   const curSec = useShared("curSec");
@@ -111,7 +111,7 @@ export function OverlayMenu() {
     closeMenuNow();
     if (p === undefined) return;
     const delay = prefersReduced() ? 0 : 450;
-    if (home) setTimeout(() => emit("openDrawer", +p), delay);
+    if (onProducts) setTimeout(() => emit("openDrawer", +p), delay);
     else setIntent({ type: "openDrawer", i: +p, delay });
   };
 

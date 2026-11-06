@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import type { ComponentProps, MouseEvent } from "react";
-import { useIsHome, useLocale } from "@/lib/hooks";
+import { isPageSection, useIsHome, useLocale } from "@/lib/hooks";
 import { useGoBrand } from "@/lib/nav";
 import type { SectionKey } from "@/lib/store";
 
@@ -10,10 +10,12 @@ type AnchorProps = Omit<ComponentProps<"a">, "href">;
 /**
  * Link to a home-page section. On the home page it is a plain `#section` anchor
  * (native smooth scroll, like the original); elsewhere it routes to `/[locale]#section`.
+ * Sections with their own page (brands, projects, products) link to /[locale]/<section>.
  */
 export function SecLink({ sec, ...rest }: AnchorProps & { sec: SectionKey }) {
   const home = useIsHome();
   const locale = useLocale();
+  if (isPageSection(sec)) return <Link href={`/${locale}/${sec}`} {...rest} />;
   if (home) return <a href={`#${sec}`} {...rest} />;
   return <Link href={`/${locale}#${sec}`} {...rest} />;
 }

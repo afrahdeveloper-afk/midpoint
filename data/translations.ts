@@ -32,7 +32,6 @@ export interface Dict {
   brands_h: string;
   brands_p: string;
   visit: string;
-  prod_h: string;
   prod_p: string;
   from: string;
   c_h: string;
@@ -191,7 +190,16 @@ export interface Dict {
   pjd_elev: string;
   pjp_prev: string;
   pjp_next: string;
-  pj_hint: string;
+  pjs_place: string;
+  px_cta_t: string;
+  px_cta_p: string;
+  px_cta_wa: string;
+  br_cta_t: string;
+  br_cta_p: string;
+  br_cta_wa: string;
+  pj_cta_t: string;
+  pj_cta_p: string;
+  pj_cta_wa: string;
 }
 
 const en: Dict = {
@@ -207,7 +215,7 @@ const en: Dict = {
   cta_contact: "Talk to us",
   prev: "Previous slide",
   next: "Next slide",
-  tagline: "Official agent for nine European and Japanese brands in Iraq",
+  tagline: "Our partnerships include leading global brands from Europe and Japan",
   c_address: "Showroom",
   address: "Godiya Plaza, Al-Mansour, Baghdad, Iraq",
   c_phone: "Phone",
@@ -225,7 +233,6 @@ const en: Dict = {
   brands_h: "Nine makers, one address",
   brands_p: "We are the authorised partner in Iraq for manufacturers chosen for the quality of their material and the way they stand behind it.",
   visit: "Visit site",
-  prod_h: "From the slab to the tap",
   prod_p: "Choose a category to see what it's made of and which of our brands supply it.",
   from: "Supplied by",
   c_h: "Plan your project with us",
@@ -399,7 +406,16 @@ const en: Dict = {
   pjd_elev: "Lift supply",
   pjp_prev: "Previous project",
   pjp_next: "Next project",
-  pj_hint: "Hover a project to pause, drag to browse, click for details",
+  pjs_place: "Project location",
+  px_cta_t: "Planning a space?",
+  px_cta_p: "Send us your plans or visit the showroom, and we will help you choose the right materials for each room.",
+  px_cta_wa: "Hello Midpoint, I would like help choosing materials for my space",
+  br_cta_t: "Not sure which brand fits?",
+  br_cta_p: "Visit the showroom to see the materials in person and compare finishes with our team before you decide.",
+  br_cta_wa: "Hello Midpoint, I would like advice on choosing a brand",
+  pj_cta_t: "Planning a project?",
+  pj_cta_p: "Visit the showroom or message us. We will help you choose the porcelain and sanitaryware for your space and follow it through to delivery.",
+  pj_cta_wa: "Hello Midpoint, I'd like to discuss a project",
 };
 
 const ar: Dict = {
@@ -415,7 +431,7 @@ const ar: Dict = {
   cta_contact: "تحدث معنا",
   prev: "الشريحة السابقة",
   next: "الشريحة التالية",
-  tagline: "الوكيل الرسمي لتسع علامات أوروبية ويابانية في العراق",
+  tagline: "شراكاتنا تشمل علامات عالمية رائدة من أوروبا واليابان",
   c_address: "المعرض",
   address: "بغداد، المنصور، كوديا بلازا",
   c_phone: "الهاتف",
@@ -433,7 +449,6 @@ const ar: Dict = {
   brands_h: "تسع علامات، عنوان واحد",
   brands_p: "نحن الشريك المعتمد في العراق لمصنّعين اخترناهم لجودة موادهم ولالتزامهم بما يقدّمونه.",
   visit: "زيارة الموقع",
-  prod_h: "من الأسطح إلى أدق التفاصيل",
   prod_p: "اختر فئةً لتتعرّف على خاماتها، والعلامات التي نوفّرها فيها.",
   from: "متوفر من",
   c_h: "خطط لمشروعك معنا",
@@ -607,7 +622,16 @@ const ar: Dict = {
   pjd_elev: "توريد مصاعد",
   pjp_prev: "المشروع السابق",
   pjp_next: "المشروع التالي",
-  pj_hint: "مرّر على أي مشروع لإيقافه، اسحب للتصفح، واضغط لعرض التفاصيل",
+  pjs_place: "موقع المشروع",
+  px_cta_t: "تخطّط لمساحتك؟",
+  px_cta_p: "أرسل لنا مخططاتك أو زرنا في المعرض، ونساعدك في اختيار المواد المناسبة لكل غرفة.",
+  px_cta_wa: "مرحباً ميدبوينت، أرغب بمساعدة في اختيار المواد لمساحتي",
+  br_cta_t: "محتار أي علامة تناسبك؟",
+  br_cta_p: "زورونا في المعرض لتشاهدوا المواد على الطبيعة وتقارنوا التشطيبات مع فريقنا قبل أن تقرروا.",
+  br_cta_wa: "مرحباً ميدبوينت، أرغب باستشارة لاختيار العلامة المناسبة",
+  pj_cta_t: "لديك مشروع قادم؟",
+  pj_cta_p: "زورونا في المعرض أو راسلونا، ونساعدك في اختيار البورسلين والصحيات المناسبة لمساحتك ونتابع معك حتى التسليم.",
+  pj_cta_wa: "مرحباً ميدبوينت، أرغب بالتحدث عن مشروع",
 };
 
 /** UI copy, keyed by locale (was `T` in the original script). */

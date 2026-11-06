@@ -35,7 +35,7 @@ export default async function BrandRoute({ params }: PageProps<"/[locale]/brands
   const L = T[locale];
   const crumbs = breadcrumbJsonLd([
     { name: L.nav_home, url: `/${locale}` },
-    { name: L.nav_brands, url: `/${locale}#brands` },
+    { name: L.nav_brands, url: `/${locale}/brands` },
     { name: BRANDS[k].n, url: `/${locale}/brands/${slug}` },
   ]);
   return (

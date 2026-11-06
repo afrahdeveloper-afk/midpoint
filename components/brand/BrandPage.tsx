@@ -20,7 +20,7 @@ import { T } from "@/data/translations";
 import { SITE, waLink } from "@/data/site";
 import { pad2, useIsoLayoutEffect, useLocale } from "@/lib/hooks";
 import { useGoBrand, useGoHome, wipe } from "@/lib/nav";
-import { bodyClass, emit, getShared, persist } from "@/lib/store";
+import { bodyClass, emit, getShared, persist, setIntent } from "@/lib/store";
 
 /** About text: the first sentence becomes the large lead, the rest the body. */
 function splitLead(text: string): [string, string] {
@@ -270,10 +270,7 @@ export function BrandPage({ k }: { k: number }) {
               sec="brands"
               className="link-arrow"
               id="bpBack"
-              onClick={(e) => {
-                e.preventDefault();
-                goHome("brands", { type: "selectBrand", k });
-              }}
+              onClick={() => setIntent({ type: "selectBrand", k })}
             >
               <span>{L.bp_all}</span>
               <IcArrow />

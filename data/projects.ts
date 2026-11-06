@@ -58,7 +58,7 @@ export const PJ_TYPE: Record<string, ProjectType> = {
 };
 
 /** Number of photos per project (files <id>-1.webp … <id>-<n>.webp in /public/projects). */
-const PJ_PHOTOS: Record<string, number> = { "villa-erbil": 15 };
+const PJ_PHOTOS: Record<string, number> = { "villa-erbil": 3 };
 
 /** Photo URLs for a project, in display order (replaces the original's embedded PJ_IMG). */
 export const pjImages = (id: string) =>

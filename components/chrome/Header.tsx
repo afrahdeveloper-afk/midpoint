@@ -6,7 +6,7 @@ import { IcMail, IcPhone, IcPin, IcWa, Socials } from "@/components/icons";
 import { SecLink } from "@/components/nav/Links";
 import { T } from "@/data/translations";
 import { SITE } from "@/data/site";
-import { pad2, prefersReduced, useIsHome, useIsoLayoutEffect, useLocale, useOpenNow } from "@/lib/hooks";
+import { pad2, prefersReduced, useIsHome, useIsoLayoutEffect, useLocale, useOpenNow, usePageSection } from "@/lib/hooks";
 import { useSwitchLang } from "@/lib/nav";
 import { bodyClass, getShared, on, persist, SECTIONS, setShared, useShared, watchShared, type SectionKey } from "@/lib/store";
 
@@ -31,6 +31,7 @@ export function Header() {
   const menuOpen = useShared("menuOpen");
   const hdr = useRef<HTMLElement>(null);
   const prog = useRef<HTMLElement>(null);
+  const pageSec = usePageSection();
 
   /* ---- current-section indicator ("where") ---- */
   const [whereSec, setWhereSec] = useState<SectionKey>(() => getShared().curSec);
@@ -46,16 +47,19 @@ export function Header() {
         setSwap(false);
       }, 220);
     });
+    // catch up with a change made before we subscribed (e.g. a section page set curSec, then Strict Mode re-ran this effect)
+    const t0 = window.setTimeout(() => setWhereSec(getShared().curSec));
     return () => {
       off();
       clearTimeout(t);
+      clearTimeout(t0);
     };
   }, []);
 
-  /* scroll spy on the home page; brand pages always read "Our brands" */
+  /* scroll spy on the home page; a section page reads its own name, brand pages "Our brands" */
   useEffect(() => {
     if (!home) {
-      setShared({ curSec: "brands" });
+      setShared({ curSec: pageSec ?? "brands" });
       return;
     }
     if (!("IntersectionObserver" in window)) return;
@@ -71,7 +75,7 @@ export function Header() {
       if (el) spy.observe(el);
     });
     return () => spy.disconnect();
-  }, [home, pathname]);
+  }, [home, pageSec, pathname]);
 
   /* ---- solid / smart-hide / progress ---- */
   useIsoLayoutEffect(() => {
@@ -119,8 +123,8 @@ export function Header() {
 
   return (
     <>
-      <a className="skip" href={home ? "#about" : "#bpAbout"}>{L.skip}</a>
-      <header className={"hdr" + (onBrand ? " hdr-brand" : "")} id="hdr" ref={hdr}>
+      <a className="skip" href={home ? "#about" : pageSec ? `#${pageSec}` : "#bpAbout"}>{L.skip}</a>
+      <header className={"hdr" + (onBrand ? " hdr-brand" : "") + (pageSec ? " hdr-page" : "")} id="hdr" ref={hdr}>
         <div className="util">
           <div className="util-in">
             <div className="util-g">

@@ -311,7 +311,7 @@ export function HeroSlider() {
         <div className="btns ln d5">
           <span className="btn-row">
             {/* the whitespace matters: .btn-row is display:block here (.ln>span wins), so the gap is a space */}
-            <a className="btn solid" href="#brands">{L.cta_brands}</a>{" "}
+            <SecLink sec="brands" className="btn solid">{L.cta_brands}</SecLink>{" "}
             <a className="btn ghost" href="#contact">{L.cta_contact}</a>
           </span>
         </div>

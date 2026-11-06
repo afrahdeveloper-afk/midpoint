@@ -4,7 +4,7 @@ import { SLUGS } from "@/data/brands";
 import { SITE_URL } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const paths = ["", ...SLUGS.map((s) => `/brands/${s}`)];
+  const paths = ["", "/brands", "/products", "/projects", ...SLUGS.map((s) => `/brands/${s}`)];
   const lastModified = new Date();
   return paths.flatMap((path) =>
     LOCALES.map((locale) => ({

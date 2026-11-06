@@ -13,8 +13,8 @@
 import { useSyncExternalStore } from "react";
 
 export type SectionKey = "home" | "about" | "brands" | "projects" | "products" | "contact";
-/** Home-page sections in page order (scroll spy + header indicator numbering). */
-export const SECTIONS: SectionKey[] = ["home", "about", "brands", "projects", "products", "contact"];
+/** Sections in menu order (scroll spy + header indicator numbering); "projects" is its own page. */
+export const SECTIONS: SectionKey[] = ["home", "about", "brands", "products", "projects", "contact"];
 
 export const persist = {
   /** The preloader has finished once in this page load. */
@@ -30,7 +30,7 @@ export const persist = {
   hdr: { solid: false, hide: false },
   menu: { open: false, pvKey: "home" as SectionKey },
   hero: { cur: 0, userPaused: null as boolean | null, prog: 0 },
-  brands: { cat: "all", sel: 0, open: -1 },
+  brands: { cat: "all" },
   pxSpace: "all",
   projects: { filter: "all", paused: false },
   form: { name: "", phone: "", type: 0, brand: 0, msg: "" },
@@ -101,8 +101,6 @@ type Events = {
   closeMenuNow: [];
   /** Show the header (it may be hidden by the smart-hide). */
   showHeader: [];
-  /** Select a brand in the home brand list (after returning from a brand page). */
-  selectBrand: [k: number];
   /** Brand-to-brand slab wipe. */
   wipe: [phase: "cover" | "uncover"];
 };
