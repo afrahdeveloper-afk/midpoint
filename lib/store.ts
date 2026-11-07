@@ -30,9 +30,6 @@ export const persist = {
   hdr: { solid: false, hide: false },
   menu: { open: false, pvKey: "home" as SectionKey },
   hero: { cur: 0, userPaused: null as boolean | null, prog: 0 },
-  brands: { cat: "all" },
-  pxSpace: "all",
-  projects: { filter: "all", paused: false },
   form: { name: "", phone: "", type: 0, brand: 0, msg: "" },
   /** `.rv` elements already revealed ("<section>:<index>"), plus ids marked `seen`. */
   seenRv: new Set<string>(),
@@ -40,11 +37,8 @@ export const persist = {
 };
 
 /** Merge `patch` into one of the `persist` groups (keeps writes out of component render scope). */
-export function remember<K extends "hdr" | "menu" | "hero" | "brands" | "projects" | "form">(group: K, patch: Partial<(typeof persist)[K]>) {
+export function remember<K extends "hdr" | "menu" | "hero" | "form">(group: K, patch: Partial<(typeof persist)[K]>) {
   Object.assign(persist[group], patch);
-}
-export function rememberSpace(s: string) {
-  persist.pxSpace = s;
 }
 
 /* ---------- reactive shared flags ---------- */

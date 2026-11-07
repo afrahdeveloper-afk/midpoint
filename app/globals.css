@@ -432,13 +432,6 @@ html[lang="ar"] .ab-close{line-height:1.9}
 
 /* ---- Brands pro ---- */
 
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border:1px solid var(--line);border-radius:999px;font-size:14px;color:var(--ink);transition:background .2s,color .2s,border-color .2s}
-.chip small{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
-.chip:hover{border-color:var(--brass)}
-.chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:var(--pearl)}
-.chip[aria-pressed="true"] small{color:var(--brass-soft)}
-
 /* showcase */
 
 .tags{list-style:none;margin:0 0 26px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
@@ -498,16 +491,15 @@ html[lang="en"] .bm-sub{font-family:var(--font-manrope),system-ui,sans-serif;fon
 .hero-intro .intro-pair .p-heart{height:calc(var(--lh) * 1.12)}
 
 /* ---- Products pro ---- */
-.px-count{margin:0;margin-inline-start:auto;font-size:14px;color:var(--muted)}
+
 .bento{list-style:none;margin:0;padding:0;display:grid;gap:14px;grid-template-columns:1fr;max-width:1280px}
 @media (min-width:700px){.bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:260px}.bento>li:first-child{grid-column:span 2}}
-/* 2 columns (up to 1500px, the sidebar takes the rest): the last card would sit alone in its row, so it spans both */
-@media (min-width:700px) and (max-width:1499px){.bento>li:last-child:nth-child(even){grid-column:span 2}}
-@media (min-width:1500px){.bento{grid-template-columns:repeat(4,1fr);grid-auto-rows:270px}
+/* 2 columns: the last card would sit alone in its row, so it spans both */
+@media (min-width:700px) and (max-width:1079px){.bento>li:last-child:nth-child(even){grid-column:span 2}}
+@media (min-width:1080px){.bento{grid-template-columns:repeat(4,1fr);grid-auto-rows:270px}
   .bento>li:nth-child(1){grid-column:span 2;grid-row:span 2}.bento>li:nth-child(2){grid-column:span 2}
   .bento>li:nth-child(5),.bento>li:nth-child(6){grid-column:span 2}}
 .card{position:relative;height:100%;min-height:240px;transition:opacity .45s,filter .45s}
-.card.dim{opacity:.28;filter:grayscale(.8)}
 .card-btn{position:absolute;inset:0;display:block;width:100%;overflow:hidden;text-align:start;color:var(--pearl);background:var(--navy);isolation:isolate}
 .card-mat{position:absolute;inset:0;transition:transform 1.2s var(--ease-out)}
 .card-mat svg{position:absolute;inset:0;width:100%;height:100%}
@@ -650,10 +642,7 @@ body.locked .wa-float{opacity:0;pointer-events:none}
 .wa-time{font-size:11px;color:var(--brass-soft)}
 @keyframes bubIn{from{opacity:0;transform:translateY(8px) scale(.97)}}
 .wa-q{margin:16px 0 10px;font-size:12px;color:rgba(233,230,224,.8)}
-.wa-chips{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:10px}
-.wa-chips button{min-height:36px;padding:0 12px;border:1px solid rgba(217,198,163,.35);border-radius:999px;font-size:13px;color:var(--pearl);transition:background .2s,color .2s,border-color .2s;animation:bubIn .5s var(--ease-out) both}
-.wa-chips button:hover{border-color:var(--brass-soft)}
-.wa-chips button[aria-pressed="true"]{background:var(--brass-soft);color:var(--navy);border-color:var(--brass-soft)}
+
 .wa-start{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 16px 0;min-height:50px;background:var(--brass-soft);color:var(--navy);font-size:14px;font-weight:600;text-decoration:none;transition:background .25s}
 .wa-start:hover{background:var(--pearl)}
 .wa-start svg{width:20px;height:20px}
@@ -662,7 +651,7 @@ body.locked .wa-float{opacity:0;pointer-events:none}
 .wa-start:hover .wa-arr{transform:translateX(4px)}[dir="rtl"] .wa-start:hover .wa-arr{transform:scaleX(-1) translateX(4px)}
 .wa-note{margin:10px 0 14px;text-align:center;font-size:11px;color:rgba(233,230,224,.8);font-variant-numeric:tabular-nums}
 @media (max-width:560px){.wa-fab{height:56px;min-width:56px}.wa-ic{width:54px;height:54px}}
-@media (prefers-reduced-motion:reduce){.wa-ring{animation:none}.wa-pop,.wa-float{transition:opacity .2s}.wa-bubble,.wa-chips button{animation:none}}
+@media (prefers-reduced-motion:reduce){.wa-ring{animation:none}.wa-pop,.wa-float{transition:opacity .2s}.wa-bubble{animation:none}}
 
 /* ---- Brand page ---- */
 .bp[hidden]{display:none}
@@ -679,8 +668,7 @@ body.on-brand main#main{display:none}
 .bp-logo img{max-height:52px;max-width:220px;width:auto;height:auto;filter:brightness(0) invert(1)}
 .bp h1{font-family:var(--font-cormorant),Georgia,serif;font-weight:500;font-size:clamp(46px,6vw,92px);line-height:1;margin:0 0 20px;text-align:start;outline:none}
 [dir="rtl"] .bp h1{text-align:right}
-.bp-chips{list-style:none;margin:0 0 24px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.bp-chips li{font-size:13px;padding:6px 14px;border:1px solid rgba(217,198,163,.4);border-radius:999px;color:var(--brass-soft)}
+
 .bp-intro{margin:0 0 32px;max-width:52ch;font-size:clamp(16px,1.3vw,18px);color:rgba(233,230,224,.86)}
 .bp-cta{display:flex;flex-wrap:wrap;gap:10px}
 .bp-mat{position:relative;min-height:320px;overflow:hidden;clip-path:inset(0 0 0 100%);animation:bpMat 1.2s var(--ease) .15s forwards}
@@ -806,8 +794,8 @@ body.on-brand .hdr{background:rgba(68,93,129,.94);backdrop-filter:blur(16px);-we
 @keyframes chIn{to{transform:none;opacity:1}}
 .bp-logo img{opacity:0;animation:inUp .8s var(--ease-out) .1s forwards}
 @keyframes inUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.bp-chips li,.bp-intro,.bp-cta{animation:fadeUp .8s var(--ease-out) both}
-.bp-chips li{animation-delay:.45s}.bp-intro{animation-delay:.55s}.bp-cta{animation-delay:.65s}
+.bp-intro,.bp-cta{animation:fadeUp .8s var(--ease-out) both}
+.bp-intro{animation-delay:.55s}.bp-cta{animation-delay:.65s}
 .bp-mat{transform:translate3d(0,var(--py,0px),0)}
 .bp-rail{grid-column:1;position:relative;z-index:2;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:0 var(--pad) 22px;mask-image:linear-gradient(90deg,#000 85%,transparent);-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent)}
 [dir="rtl"] .bp-rail{mask-image:linear-gradient(270deg,#000 85%,transparent);-webkit-mask-image:linear-gradient(270deg,#000 85%,transparent)}
@@ -869,7 +857,7 @@ body.hdr-hidden .bp-sub{top:env(safe-area-inset-top,0px)}
 .bp-wipe.uncover i{transform:translateY(101%)}
 .bp-wipe.cover i:nth-child(2),.bp-wipe.uncover i:nth-child(2){transition-delay:.05s}.bp-wipe.cover i:nth-child(3),.bp-wipe.uncover i:nth-child(3){transition-delay:.1s}.bp-wipe.cover i:nth-child(4),.bp-wipe.uncover i:nth-child(4){transition-delay:.15s}.bp-wipe.cover i:nth-child(5),.bp-wipe.uncover i:nth-child(5){transition-delay:.2s}
 .bp-wipe.reset i{transition:none}
-@media (prefers-reduced-motion:reduce){.bp h1 .ch,.bp-logo img,.bp-chips li,.bp-intro,.bp-cta{animation:none;opacity:1;transform:none}.bp-wipe{display:none}}
+@media (prefers-reduced-motion:reduce){.bp h1 .ch,.bp-logo img,.bp-intro,.bp-cta{animation:none;opacity:1;transform:none}.bp-wipe{display:none}}
 
 /* ---- real photography ---- */
 img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;user-select:none}
@@ -1179,7 +1167,7 @@ html[lang="ar"] .bpa-lead{line-height:1.75;max-width:40ch}
 .sec-head h1{font-family:var(--f-display);font-weight:400;font-size:clamp(36px,5vw,68px);line-height:1.06;margin:0;letter-spacing:-.005em}
 html[lang="ar"] .sec-head h1{line-height:1.35}
 /* products page: the cards fill the full width beside the sidebar (no 1280px cap), the closing band matches */
-#products .side-body,#products .bento,#products .page-cta{max-width:none}
+#products .bento,#products .page-cta{max-width:none}
 /* opening spotlight: a framed photo + the project facts, centred (stacked on phones) */
 
 .pjs-frame{display:block;width:100%;padding:clamp(8px,1vw,14px);border:0;background:#fff;box-shadow:0 22px 44px -22px rgba(40,56,82,.45),0 2px 6px rgba(40,56,82,.08);cursor:zoom-in;animation:bxIn .6s var(--ease-out) both}
@@ -1199,34 +1187,13 @@ html[lang="ar"] .pjs-facts dt{font-style:normal}
 .pjs-more svg{width:14px;height:14px}
 [dir="rtl"] .pjs-more svg{transform:scaleX(-1)}
 @media (prefers-reduced-motion:reduce){.pjs-frame{animation:none}.pjs-img img{transition:none}}
-.pj-top h1{font-family:var(--f-display);font-weight:400;font-size:clamp(36px,5vw,68px);line-height:1.06;margin:0;letter-spacing:-.005em}
-html[lang="ar"] .pj-top h1{line-height:1.35}
-.pj-lead{margin:18px 0 0;max-width:52ch;font-size:17px;line-height:1.7;color:var(--muted)}
+
 /* card grid: 1 column on phones, 2 from 640px, 3 from 1080px; cards fade in staggered (re-keyed per filter) */
 
 /* a lone card left in the last row: the first card takes two columns instead */
 
 /* side filters (projects, products): one wrapping chip row (groups separated by a hairline) below 1080px, a sticky sidebar above */
-.side-filter{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
-.side-fg{display:contents}
-.side-fg+.side-fg::before{content:"";flex:none;width:1px;height:26px;margin:0 6px;align-self:center;background:var(--line)}
-.side-fh{display:none}
-.side-filter .px-count{margin:0}
-@media (min-width:1080px){
-  .side-body{display:grid;grid-template-columns:240px minmax(0,1fr);gap:clamp(32px,3.5vw,56px);align-items:start;max-width:1280px}
-  .side-filter{display:block;position:sticky;top:calc(env(safe-area-inset-top,0px) + 68px + 24px);margin:0}
-  .side-filter .chips{display:grid;gap:26px}
-  .side-fg{display:grid}
-  .side-fg+.side-fg::before{content:none}
-  .side-fh{display:block;margin:0 0 6px;padding-inline:14px;font-family:inherit;font-size:13px;font-weight:600;line-height:1.5;color:var(--brass)}
-  .side-filter .chip{position:relative;width:100%;justify-content:space-between;min-height:46px;padding:0 14px;border:0;border-bottom:1px solid var(--line);border-radius:0;text-align:start}
-  .side-filter .chip::before{content:"";position:absolute;inset-inline-start:0;top:10px;bottom:10px;width:2px;background:var(--brass);transform:scaleY(0);transition:transform .3s var(--ease-out)}
-  .side-filter .chip:hover{background:rgba(184,151,106,.07)}
-  .side-filter .chip:hover::before{transform:scaleY(1)}
-  .side-filter .chip[aria-pressed="true"]{background:var(--navy);color:var(--pearl)}
-  .side-filter .chip[aria-pressed="true"]::before{content:none}
-  .side-filter .px-count{margin:18px 0 0;padding-inline:14px}
-}
+
 /* the projects page opens on a light section, so its (light-text) header is always solid */
 .hdr.hdr-page{background:rgba(68,93,129,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(217,198,163,.14)}
 
@@ -1238,11 +1205,6 @@ html[lang="ar"] .pj-top h1{line-height:1.35}
 .page-cta-act{display:flex;flex-wrap:wrap;gap:12px}
 [dir="rtl"] .page-cta .btn.solid svg{transform:scaleX(-1)}
 
-.pj-top{display:grid;gap:24px;align-items:end;margin-bottom:clamp(32px,4vw,52px);max-width:1280px}
-@media (min-width:900px){.pj-top{grid-template-columns:1fr auto}}
-.pj-stats{display:flex;gap:clamp(28px,4vw,56px);margin:0}
-.pj-stats dt{font-family:var(--f-display);font-size:clamp(44px,4.6vw,68px);line-height:1;color:var(--ink);font-variant-numeric:lining-nums}
-.pj-stats dd{margin:8px 0 0;font-size:13px;color:var(--muted)}
 .pj-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line);max-width:1280px}
 .pj-row{border-bottom:1px solid var(--line);animation:bxIn .5s var(--ease-out) both}
 .pj-row[hidden]{display:none}
@@ -1271,7 +1233,7 @@ html[lang="ar"] .pj-name b{line-height:1.5}
 .pj-btn:hover .pj-go svg{transform:translateX(4px)}[dir="rtl"] .pj-btn:hover .pj-go svg{transform:scaleX(-1) translateX(4px)}
 @media (max-width:860px){.pj-btn{grid-template-columns:56px minmax(0,1fr) 20px;gap:12px 14px;padding:18px 6px}.pj-scope{grid-column:2;grid-row:2}.pj-logos{display:none}.pj-go{grid-column:3;grid-row:1}}
 /* still used from the replaced "Projects: pro" list: stats numerals */
-.pj-stats dt .num{font-variant-numeric:lining-nums}
+
 /* project dialog */
 .pj-dlg{border:0;padding:0;width:min(560px,calc(100vw - 32px));max-height:calc(100vh - 48px);background:var(--navy-deep);color:var(--pearl);box-shadow:0 40px 100px -30px rgba(0,0,0,.7)}
 .pj-dlg::backdrop{background:rgba(40,56,82,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
@@ -1555,21 +1517,12 @@ html[lang="ar"] .f-tag{line-height:1.8}
    wrapping to three lines; the sticky showcase clears the two-row header; actions on a grid
    (primary full width); pill tags like the rest of the site; country as a quiet pill in the list */
 @media (min-width:900px){#brands .sec-head{align-items:end}#brands .sec-head>p{justify-self:end;font-size:18px;line-height:1.75;max-width:44ch}}
-@media (max-width:640px){
-  #brands .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad);scroll-padding-inline:var(--pad)}
-  #brands .chips::-webkit-scrollbar{display:none}
-  #brands .chip{flex:none}
-}
 
 /* ---- Home "Products" refinements ----
    heading/intro on one baseline (like Our brands); space chips scroll sideways on phones; every
    card shows a round arrow so it reads as clickable without hovering; the featured card shows its
    description; the text keeps clear of the arrow */
-@media (max-width:640px){
-  #products .chips{flex-wrap:nowrap;width:calc(100% + var(--pad) * 2);overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad)}
-  #products .chips::-webkit-scrollbar{display:none}
-  #products .chip{flex:none}
-}
+
 .card-arr{position:absolute;z-index:2;inset-inline-end:clamp(18px,2vw,26px);bottom:clamp(16px,2vw,24px);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(233,230,224,.35);color:var(--pearl);background:rgba(68,93,129,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .3s,border-color .3s,color .3s}
 .card-arr svg{width:15px;height:15px;transition:transform .35s var(--ease-out)}
 [dir="rtl"] .card-arr svg{transform:scaleX(-1)}
@@ -1628,7 +1581,7 @@ html[lang="ar"] .f-tag{line-height:1.8}
 
 /* ================= Brands page: a card per brand ================= */
 /* photo on top, the logo on a white plate overlapping its edge, then name, speciality, what we supply */
-#brands .side-body,#brands .page-cta{max-width:none}
+#brands .page-cta{max-width:none}
 .bc-grid{--bc-bg:#fff;list-style:none;margin:0;padding:0;display:grid;gap:clamp(16px,1.8vw,26px)}
 :root[data-theme="dark"] .bc-grid{--bc-bg:#182a45}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .bc-grid{--bc-bg:#182a45}}
@@ -1666,7 +1619,7 @@ html[lang="ar"] .f-tag{line-height:1.8}
 
 /* ================= Projects page: portfolio rows ================= */
 /* one row per project: framed photo + centred facts, sides alternating, hairline between rows */
-.pr-list{list-style:none;margin:0;padding:0}
+.pr-list{list-style:none;margin:0;padding:0;max-width:1280px}
 .pr-row{display:grid;gap:clamp(20px,3vw,48px);align-items:center;animation:bxIn .7s var(--ease-out) both;animation-delay:calc(min(var(--k),4) * 70ms)}
 .pr-row+.pr-row{margin-top:clamp(44px,5vw,80px);padding-top:clamp(44px,5vw,80px);border-top:1px solid var(--line)}
 /* side by side from 980px (stacked, photo first, below); even rows mirror both the order and the column widths */
