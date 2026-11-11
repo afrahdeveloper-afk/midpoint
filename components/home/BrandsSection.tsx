@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Media } from "@/components/media/Media";
-import { LogoOr } from "@/components/media/Logo";
+import { Logo, LogoOr } from "@/components/media/Logo";
 import { IcArrow, IcWa } from "@/components/icons";
 import { BrandLink } from "@/components/nav/Links";
 import { BRANDS } from "@/data/brands";
@@ -24,6 +24,7 @@ export function BrandsSection() {
   const L = T[locale];
   const goHome = useGoHome();
   const [hl, setHl] = useState<number | null>(null);
+  const [paused, setPaused] = useState(false);
   const cards = useRef<(HTMLAnchorElement | null)[]>([]);
   const root = useRef<HTMLElement>(null);
   useReveal("brands", root);
@@ -43,6 +44,30 @@ export function BrandsSection() {
     <section className="sec brands" id="brands" ref={root}>
       {/* no visible heading or filters: the brand cards open the page; the h1 stays for screen readers and search */}
       <h1 className="sr">{L.nav_brands}</h1>
+      {/* opening frame (navy, attached to the header): the partnership line, then the band of logo
+          tiles gliding past (pauses on hover / focus / the button at its end) */}
+      <div className="br-hero">
+        <div className="br-hero-in rv">
+          <p className="br-lead">{L.tagline}</p>
+        </div>
+        <div className="br-band">
+          <div className={"br-mq" + (paused ? " paused" : "")} role="region" aria-label={L.mq_label}>
+            <div className="br-mq-track">
+              {[false, true].flatMap((dup) =>
+                BRANDS.map((b) => (
+                  <BrandLink key={`${dup}-${b.slug}`} slug={b.slug} className="br-mq-tile" aria-label={b.n} aria-hidden={dup || undefined} tabIndex={dup ? -1 : undefined}>
+                    {LOGOS[b.n] ? <Logo name={b.n} slug={b.slug} /> : b.n}
+                  </BrandLink>
+                )),
+              )}
+            </div>
+          </div>
+          <button className="br-mq-btn" type="button" aria-pressed={paused} aria-label={paused ? L.mq_play : L.mq_pause} onClick={() => setPaused(!paused)}>
+            <svg className="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3" height="14" /><rect x="14" y="5" width="3" height="14" /></svg>
+            <svg className="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
+          </button>
+        </div>
+      </div>
       <ul className="bc-grid">
         {BRANDS.map((b, i) => {
           const tags = b.tg[locale];

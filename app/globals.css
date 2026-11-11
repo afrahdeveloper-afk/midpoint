@@ -1195,7 +1195,7 @@ html[lang="ar"] .pjs-facts dt{font-style:normal}
 /* side filters (projects, products): one wrapping chip row (groups separated by a hairline) below 1080px, a sticky sidebar above */
 
 /* the projects page opens on a light section, so its (light-text) header is always solid */
-.hdr.hdr-page{background:rgba(68,93,129,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(217,198,163,.14)}
+.hdr.hdr-page{background:var(--navy);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(217,198,163,.14)}
 
 /* closing call to action (projects and brands pages) */
 .page-cta{margin-top:clamp(56px,7vw,96px);max-width:1280px;display:grid;gap:24px 48px;align-items:center;padding:clamp(28px,4vw,56px);background:var(--navy);color:var(--pearl)}
@@ -1637,3 +1637,44 @@ html[lang="ar"] .f-tag{line-height:1.8}
 :root[data-theme="dark"] .pr-logos img{filter:brightness(0) invert(1)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pr-logos img{filter:brightness(0) invert(1)}}
 @media (prefers-reduced-motion:reduce){.pr-row{animation:none}}
+
+/* ================= Brands page: opening line + logo ticker ================= */
+/* the frame: navy from edge to edge, flush with the (solid navy) header, so header + frame read as one block */
+.br-hero{position:relative;margin:-12px calc(var(--pad) * -1) clamp(40px,5vw,72px);background:var(--navy);color:var(--pearl);text-align:center}
+.br-hero-in{padding:clamp(40px,5vw,76px) var(--pad) clamp(32px,3.6vw,52px)}
+.br-lead{max-width:24ch;margin:0 auto;font-family:var(--f-display);font-weight:400;font-size:clamp(30px,3.6vw,56px);line-height:1.2;color:var(--pearl)}
+html[lang="ar"] .br-lead{line-height:1.45}
+.br-band{position:relative;border-top:1px solid rgba(233,230,224,.12)}
+/* a solid navy dock at the band end, under the pause button, so tiles slide away beneath it instead of showing through */
+.br-band::after{content:"";position:absolute;z-index:2;top:0;bottom:0;right:0;width:calc(var(--pad) + 76px);background:linear-gradient(270deg,var(--navy) 62%,transparent);pointer-events:none}
+[dir="rtl"] .br-band::after{right:auto;left:0;background:linear-gradient(90deg,var(--navy) 62%,transparent)}
+/* navy band, edge to edge; navy fades (not a mask) so the ends don't fade into the light page */
+.br-mq{position:relative;overflow:hidden;padding:clamp(18px,2vw,26px) 0}
+.br-mq::before,.br-mq::after{content:"";position:absolute;z-index:2;top:0;bottom:0;width:clamp(40px,8vw,120px);pointer-events:none}
+.br-mq::before{left:0;background:linear-gradient(90deg,var(--navy),transparent)}
+.br-mq::after{right:0;background:linear-gradient(270deg,var(--navy),transparent)}
+/* the band is laid out left-to-right in both languages (in RTL the wide track would hang off the right edge and
+   run out of tiles); Arabic pages run the animation the other way so logos enter from the reading side */
+.br-mq{direction:ltr}
+.br-mq-track{display:flex;align-items:center;width:max-content;animation:brMq 40s linear infinite}
+[dir="rtl"] .br-mq-track{animation-direction:reverse}
+@keyframes brMq{to{transform:translateX(-50%)}}
+.br-mq:hover .br-mq-track,.br-mq:focus-within .br-mq-track,.br-mq.paused .br-mq-track{animation-play-state:paused}
+/* logo tiles (same family as the brand-page rail): muted light logos, the hovered / focused tile lights up */
+.br-mq-tile{flex:none;display:grid;place-items:center;width:clamp(116px,10vw,140px);height:clamp(56px,4.6vw,66px);margin-inline-end:8px;border:1px solid rgba(233,230,224,.14);font-family:var(--font-cormorant),Georgia,serif;font-size:18px;color:rgba(233,230,224,.6);text-decoration:none;transition:border-color .25s,background .25s,color .25s}
+.br-mq-tile img{max-width:72%;max-height:24px;width:auto;height:auto;filter:brightness(0) invert(1);opacity:.5;transition:opacity .25s}
+.br-mq-tile img[data-b="roca"]{max-height:30px}
+.br-mq-tile:hover,.br-mq-tile:focus-visible{border-color:var(--pearl);background:rgba(233,230,224,.05);color:var(--pearl)}
+.br-mq-tile:hover img,.br-mq-tile:focus-visible img{opacity:1}
+.br-mq-tile:focus-visible{outline:none}
+.br-mq-btn{position:absolute;z-index:3;top:50%;inset-inline-end:var(--pad);display:grid;place-items:center;width:40px;height:40px;transform:translateY(-50%);border:1px solid rgba(233,230,224,.3);border-radius:50%;background:var(--navy);color:var(--pearl);transition:border-color .25s,background .25s}
+.br-mq-btn:hover,.br-mq-btn:focus-visible{border-color:var(--pearl);background:#4d6890}
+.br-mq-btn svg{width:14px;height:14px}
+.br-mq-btn .i-play,.br-mq-btn[aria-pressed="true"] .i-pause{display:none}
+.br-mq-btn[aria-pressed="true"] .i-play{display:block}
+/* reduced motion: no ticker, the tiles sit still and wrap; the duplicate set and the button are dropped */
+@media (prefers-reduced-motion:reduce){
+  .br-mq::before,.br-mq::after{content:none}
+  .br-mq-track{animation:none;width:auto;flex-wrap:wrap;justify-content:center;row-gap:8px;padding-inline:var(--pad)}
+  .br-mq-tile[aria-hidden="true"],.br-mq-btn{display:none}
+}

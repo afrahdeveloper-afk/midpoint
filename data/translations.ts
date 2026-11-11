@@ -98,6 +98,8 @@ export interface Dict {
   loading: string;
   ready: string;
   mq_label: string;
+  mq_pause: string;
+  mq_play: string;
   wa_hi: string;
   wa_team: string;
   wa_pick: string;
@@ -308,6 +310,8 @@ const en: Dict = {
   loading: "Loading",
   ready: "Welcome",
   mq_label: "Our partner brands",
+  mq_pause: "Pause the brand ticker",
+  mq_play: "Play the brand ticker",
   wa_hi: "Hello! Welcome to Midpoint. How can we help with your project?",
   wa_team: "Midpoint team",
   wa_pick: "Choose a topic or start the chat:",
@@ -524,6 +528,8 @@ const ar: Dict = {
   loading: "جارٍ التحميل",
   ready: "أهلاً بكم",
   mq_label: "علاماتنا الشريكة",
+  mq_pause: "إيقاف حركة شريط العلامات",
+  mq_play: "تشغيل حركة شريط العلامات",
   wa_hi: "أهلاً بكم في نقطة منتصف! كيف نقدر نساعدكم في مشروعكم؟",
   wa_team: "فريق نقطة منتصف",
   wa_pick: "اختاروا موضوعاً أو ابدأوا المحادثة:",
